@@ -3,7 +3,7 @@ using namespace std;
 
 int main()
 {
-    int n_x, n_y, i, j;
+    int i, j;
     string x, y;
     vector<char> LCS;
 
