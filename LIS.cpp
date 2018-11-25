@@ -26,7 +26,7 @@ int main()
     {
         for(j=i+1; j<n; j++)
         {
-            if(arr[i] <= arr[j])
+            if(arr[i] < arr[j]) // for LDS change this condition to arr[i] > arr[j]
             {
                 prev[j] = (len[i]+1 >= len[j]) ? i : prev[j];
                 len[j] = max(len[j], len[i]+1);
