@@ -1,2 +1,2 @@
-# Greedy-and-Dynamic-Programming
+# Programming-Lab
 Temporary Repository
