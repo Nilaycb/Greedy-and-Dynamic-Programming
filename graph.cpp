@@ -206,6 +206,98 @@ int main()
             cout << endl;
         }
     }
+    cout << endl;
+
+
+    // DFS traverse of the graph
+    vector<char> dfs, stk;
+    int vis[n];
+    fill_n(vis, n, -1);
+
+    cout << "Enter the starting node for traversing: ";
+    cin >> s;
+
+    s_int = mat_id(nodes, n, s);
+
+    if(s_int == -1)
+    {
+        cout << "The starting node not found." << endl;
+    }
+    else
+    {
+        stk.push_back(s);
+        vis[s_int] = 1;
+
+        while(!stk.empty())
+        {
+            char po=stk.back();
+            stk.pop_back();
+            dfs.push_back(po);
+
+            int po_int=mat_id(nodes, n, po);
+            for(auto k=adj[po_int].begin(); k !=adj[po_int].end(); k++)
+            {
+                int m = *k;
+
+                if(vis[m] == -1)
+                {
+                    stk.push_back(nodes[m]);
+                    vis[m] = 1;
+                }
+            }
+        }
+
+        cout << "The DFS traverse is: ";
+        for(j=0; j < dfs.size(); j++)
+        {
+            cout << dfs[j];
+
+            if(j+1 != dfs.size())
+                cout << "->";
+        }
+        dfs.clear();
+
+        for(i=0; i<n; i++)
+        {
+            if(vis[i] == -1)
+            {
+                s_int = mat_id(nodes, n, nodes[i]);
+
+                stk.push_back(nodes[i]);
+                vis[s_int] = 1;
+
+                while(!stk.empty())
+                {
+                    char po=stk.back();
+                    stk.pop_back();
+                    dfs.push_back(po);
+
+                    int po_int=mat_id(nodes, n, po);
+                    for(auto k=adj[po_int].begin(); k !=adj[po_int].end(); k++)
+                    {
+                        int m = *k;
+
+                        if(vis[m] == -1)
+                        {
+                            stk.push_back(nodes[m]);
+                            vis[m] = 1;
+                        }
+                    }
+                }
+
+                cout << ", ";
+                for(j=0; j < dfs.size(); j++)
+                {
+                    cout << dfs[j];
+
+                    if(j+1 != dfs.size())
+                        cout << "->";
+                }
+                dfs.clear();
+            }
+        }
+        cout << endl;
+    }
 
     return 0;
 }
